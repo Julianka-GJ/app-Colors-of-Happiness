@@ -2,7 +2,6 @@ let colorText = document.querySelector('.color-happiness');
 let changeButton = document.querySelector('#change');
 let colorDisplay = document.querySelector('.color-display');
 
-
 function changeColor() {
     colorText.style.textShadow = `
     0 2px 0px rgba(${getRandomColor(1, 'colorBox1')}), 
@@ -19,8 +18,54 @@ function changeColor() {
     0 50px 2px rgba(${getRandomColor(0.5, 'colorBox12')}, 0.5)`;
 };
 
+
+// //---- random number generator function ---
+
 function getColor() {
     return Math.floor(Math.random()*256);
+};
+
+// ---- We create html elements: a block in which a randomly generated color
+// and its representation in rgba format will be displayed ----- 
+
+function createElements(nameBox, rgbString) {
+    let colorInfo = document.createElement('div');
+    let rgbBlock = document.createElement('div');
+
+    colorInfo.classList.add('colorInfo', `${nameBox}`);
+    rgbBlock.classList.add('rgbBlock');
+
+    let color = document.createElement('div');
+    color.classList.add('color', `color-${nameBox}`);
+
+    let rgb = document.createElement('div');
+    rgb.classList.add('rgb', `rgb-${nameBox}`);
+    color.style.backgroundColor = rgbString;
+    rgb.innerHTML = rgbString;
+
+    rgbBlock.appendChild(color);
+    rgbBlock.appendChild(rgb);
+    colorInfo.appendChild(rgbBlock);
+    colorDisplay.prepend(colorInfo);
+};
+
+//---- show color display ------ 
+
+function showСolorDisplay() {
+    colorDisplay.style.display = 'block'; 
+    colorText.style.opacity = 0;
+
+    setTimeout(() => {
+        colorDisplay.style.opacity = 1;
+        colorText.style.opacity = 1;
+        colorText.style.transition = '1.5s ease-in-out';
+    }, 200);
+};
+
+function deleteItem(event) {
+    if (colorInfo.classList.contains(`${nameBox}`)) {
+        colorDisplay.removeChild(colorInfo);
+    }  
 };
 
 
@@ -36,32 +81,8 @@ function getRandomColor(rgba, colorBox) {
     let color = document.querySelector(`.color-${colorBox}`);
     let rgb = document.querySelector(`.rgb-${colorBox}`);
 
-    colorDisplay.style.display = 'block'; 
-    colorText.style.opacity = 0;
-
-    setTimeout(() => {
-        colorDisplay.style.opacity = 1;
-        colorText.style.opacity = 1;
-        colorText.style.transition = '1.5s ease-in-out';
-    }, 200);
-
-
     if(!colorInfo && !color && !rgb) {
-        
-        colorInfo = document.createElement('div');
-        colorInfo.classList.add('colorInfo', `${colorBox}`);
-
-        let color = document.createElement('div');
-        color.classList.add('color', `color-${colorBox}`);
-
-        let rgb = document.createElement('div');
-        rgb.classList.add('rgb', `rgb-${colorBox}`);
-        color.style.backgroundColor = rgbString;
-        rgb.innerHTML = rgbString;
-
-        colorInfo.appendChild(color);
-        colorInfo.appendChild(rgb);
-        colorDisplay.prepend(colorInfo);
+        createElements(colorBox, rgbString);
     }
 
     else {
@@ -69,6 +90,7 @@ function getRandomColor(rgba, colorBox) {
         rgb.innerHTML = rgbString;
     }
 
+    showСolorDisplay();
 
     return `${a}, ${b}, ${c}`;
 };

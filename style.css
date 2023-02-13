@@ -67,6 +67,10 @@ body {
     margin-bottom: 10px;
 }
 
+.rgbBlock {
+    display: flex;
+}
+
 .rgb {
     color: #343046;
     font-size: 16px;
