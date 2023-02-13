@@ -9,7 +9,7 @@ body {
 
 .container {
     position: absolute;
-    width: 1000px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,13 +22,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 20px;
 }
 
 .color-happiness {
-    width: 60%;
+    width: 50%;
     text-transform: uppercase;
     font-weight: 900;
     font-size: 84px;
+    margin-right: 20px;
     color:#c000cc;
     text-shadow: 
             0 2px 0px #b593cb,
@@ -60,11 +62,14 @@ body {
     display: none;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
+    width: 20%;
 }
 
 .colorInfo {
     display: flex;
     margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .rgbBlock {
@@ -83,3 +88,7 @@ body {
     margin-right: 15px;
 }
 
+.img-basket {
+    width: 8%;
+    cursor: pointer;
+}

@@ -25,28 +25,59 @@ function getColor() {
     return Math.floor(Math.random()*256);
 };
 
+class Element {
+    constructor(tagName, attributes, contents,) {
+        this.tagName = tagName;
+        this.contents = contents;
+        this.attributes = attributes; 
+    };
+
+    createEl() {
+        let elem = document.createElement(this.tagName);
+        if (!this.attributes) return elem;
+        for (let [attr, value] of Object.entries(this.attributes)) {
+            elem.setAttribute(attr, value);
+        }
+
+        elem.textContent = this.contents;
+
+        return elem
+    };
+}
+
+
 // ---- We create html elements: a block in which a randomly generated color
 // and its representation in rgba format will be displayed ----- 
 
 function createElements(nameBox, rgbString) {
-    let colorInfo = document.createElement('div');
-    let rgbBlock = document.createElement('div');
+    let colorInfoElem = new Element('div', {class: `colorInfo ${nameBox}`});
+    let rgbInfoElem = new Element('div', {class: 'rgbBlock'});
+    let colorElem = new Element('div', {class: `color color-${nameBox}`});
+    let rgbElem = new Element('div', {class: `rgb rgb-${nameBox}`}, rgbString);
+    let imgElem = new Element('img', {class: 'img-basket', src: './img/trash.png', alt: 'trash'})
 
-    colorInfo.classList.add('colorInfo', `${nameBox}`);
-    rgbBlock.classList.add('rgbBlock');
-
-    let color = document.createElement('div');
-    color.classList.add('color', `color-${nameBox}`);
-
-    let rgb = document.createElement('div');
-    rgb.classList.add('rgb', `rgb-${nameBox}`);
+    let colorInfo = colorInfoElem.createEl();
+    let rgbBlock = rgbInfoElem.createEl();
+    let color = colorElem.createEl();
+    let rgb = rgbElem.createEl();
+    let imgBasket = imgElem.createEl();
+    
     color.style.backgroundColor = rgbString;
-    rgb.innerHTML = rgbString;
+    
 
     rgbBlock.appendChild(color);
     rgbBlock.appendChild(rgb);
     colorInfo.appendChild(rgbBlock);
+    colorInfo.appendChild(imgBasket);
     colorDisplay.prepend(colorInfo);
+
+    function deleteItem(el) {
+        if (el.target.classList.contains('img-basket')) {
+            el.target.parentElement.remove();
+        }
+    };
+    
+    imgBasket.addEventListener('click', deleteItem);
 };
 
 //---- show color display ------ 
@@ -60,12 +91,6 @@ function showСolorDisplay() {
         colorText.style.opacity = 1;
         colorText.style.transition = '1.5s ease-in-out';
     }, 200);
-};
-
-function deleteItem(event) {
-    if (colorInfo.classList.contains(`${nameBox}`)) {
-        colorDisplay.removeChild(colorInfo);
-    }  
 };
 
 
@@ -96,6 +121,7 @@ function getRandomColor(rgba, colorBox) {
 };
 
 changeButton.addEventListener('click', changeColor);
+
 
 
 
