@@ -92,3 +92,27 @@ body {
     width: 8%;
     cursor: pointer;
 }
+
+.castom-menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    border: 1px solid cadetblue;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.castom-menu.active {
+    display: flex;
+}
+
+.item {
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(90, 84, 84);
+}
+
+.castom-menu .item:last-child {
+    border-bottom: none;
+}

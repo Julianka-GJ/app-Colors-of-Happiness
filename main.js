@@ -45,39 +45,25 @@ class Element {
     };
 }
 
-
 // ---- We create html elements: a block in which a randomly generated color
 // and its representation in rgba format will be displayed ----- 
 
 function createElements(nameBox, rgbString) {
-    let colorInfoElem = new Element('div', {class: `colorInfo ${nameBox}`});
-    let rgbInfoElem = new Element('div', {class: 'rgbBlock'});
-    let colorElem = new Element('div', {class: `color color-${nameBox}`});
-    let rgbElem = new Element('div', {class: `rgb rgb-${nameBox}`}, rgbString);
-    let imgElem = new Element('img', {class: 'img-basket', src: './img/trash.png', alt: 'trash'})
 
-    let colorInfo = colorInfoElem.createEl();
-    let rgbBlock = rgbInfoElem.createEl();
-    let color = colorElem.createEl();
-    let rgb = rgbElem.createEl();
-    let imgBasket = imgElem.createEl();
-    
-    color.style.backgroundColor = rgbString;
-    
+        let colorInfo = new Element('div', {class: `colorInfo ${nameBox}`, 'data-id': `${nameBox}`}).createEl();
+        let rgbBlock = new Element('div', {class: 'rgbBlock'}).createEl();
+        let color = new Element('div', {class: `color color-${nameBox}`, 'data-id': `color-${nameBox}`}).createEl();
+        let rgb = new Element('div', {class: `rgb rgb-${nameBox}`, 'data-id': `rgb-${nameBox}`}, rgbString).createEl();
 
-    rgbBlock.appendChild(color);
-    rgbBlock.appendChild(rgb);
-    colorInfo.appendChild(rgbBlock);
-    colorInfo.appendChild(imgBasket);
-    colorDisplay.prepend(colorInfo);
-
-    function deleteItem(el) {
-        if (el.target.classList.contains('img-basket')) {
-            el.target.parentElement.remove();
-        }
-    };
-    
-    imgBasket.addEventListener('click', deleteItem);
+        console.log(color.getAttribute('data-id'))
+        
+        color.style.backgroundColor = rgbString;
+        rgb.style.color = rgbString;
+        
+        rgbBlock.appendChild(color);
+        rgbBlock.appendChild(rgb);
+        colorInfo.appendChild(rgbBlock);
+        colorDisplay.prepend(colorInfo);
 };
 
 //---- show color display ------ 
@@ -92,7 +78,6 @@ function showСolorDisplay() {
         colorText.style.transition = '1.5s ease-in-out';
     }, 200);
 };
-
 
 function getRandomColor(rgba, colorBox) { 
     let a = getColor();
@@ -113,8 +98,8 @@ function getRandomColor(rgba, colorBox) {
     else {
         color.style.backgroundColor = rgbString;
         rgb.innerHTML = rgbString;
+        rgb.style.color = rgbString;
     }
-
     showСolorDisplay();
 
     return `${a}, ${b}, ${c}`;
