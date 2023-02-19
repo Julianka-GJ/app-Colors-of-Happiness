@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap');
+
+body {
+    font-family: 'Roboto', 'Tachoma', sans-serif;
+    margin: 0;
+    background: linear-gradient(#f3d0e3, #4a4563);
+    min-height: 100vh;
+}
+
+.container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.block-color-happiness {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.color-happiness {
+    width: 50%;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 84px;
+    margin-right: 20px;
+    color:#c000cc;
+    text-shadow: 
+            0 2px 0px #b593cb,
+            0 3px 2px rgba(83, 3, 43, 0.5),
+            0 6px 0 #e878ab,
+            0 8px 2px rgba(44, 1, 1, 0.5),
+            0 12px 0 #060a0b,
+            0 16px 2px rgba(39, 13, 1, 0.5),
+            0 24px 0 #03e9f4,
+            0 26px 2px rgba(39, 29, 2, 0.5),
+            0 36px 0 #109ccc,
+            0 38px 2px rgba(32, 39, 2, 0.5),
+            0 48px 0 #ad97c6,
+            0 50px 2px rgba(3, 56, 10, 0.5);
+}
+
+#change {
+    padding: 15px;
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 50px;
+    border: none;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.color-display {
+    display: none;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    width: 20%;
+}
+
+.colorInfo {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.rgb {
+    color: #343046;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.color {
+    width: 50px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.castom-menu {
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+    position: fixed;
+    border-radius: 4px;
+    background: linear-gradient(
+        45deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.85) 100%
+      );
+    box-shadow:
+        0 15px 35px rgba(50,50,90,0.1),
+        0 5px 15px rgba(0,0,0,0.07);
+    animation: menuAnimation 0.4s 0s both;
+
+    & .item {
+        font-size: 16px;
+        margin-left: 10px;
+        color: #75747a;
+        cursor: pointer;
+        transition: ease .2s;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+.item-block {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px 10px 10px;
+    transition: ease .2s;
+
+    &:hover {
+        background-color: #e0d3e2;
+        border-left: 3px solid #9C27B0;
+
+        svg {
+            fill: #9C27B0;
+        }
+
+        .item {
+            color: #804d8d;
+        }
+    }
+
+    &:first-child {
+        position: relative;
+    }
+}
+
+.castom-menu.active {
+    display: flex;
+}
+
+.input-text {
+    display: block;
+    position: absolute;
+    left: 60%;
+    top: 10%;
+    width: 100px;
+}
+
+@keyframes menuAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  
+    100% {
+      height: var(--height);
+      opacity: 1;
+      border-radius: 8px;
+      transform: scale(1);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .container {
+        position: static;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+    
+    .block-color-happiness {
+        width: 100%;
+        padding: 50px 20px 0px;
+        margin: 0;
+        justify-content: center;
+    }
+    
+    .color-happiness {
+        width: 70%;
+        margin: 0;
+        text-shadow: 
+            0 1px 0px #b593cb,
+            0 2px 2px rgba(83, 3, 43, 0.5),
+            0 4px 0 #e878ab,
+            0 6px 2px rgba(44, 1, 1, 0.5),
+            0 10px 0 #060a0b,
+            0 14px 2px rgba(39, 13, 1, 0.5),
+            0 18px 0 #03e9f4,
+            0 24px 2px rgba(39, 29, 2, 0.5),
+            0 28px 0 #109ccc,
+            0 30px 2px rgba(32, 39, 2, 0.5),
+            0 36px 0 #ad97c6,
+            0 40px 2px rgba(3, 56, 10, 0.5);
+    }
+    
+    #change {
+        margin: 0 0 45px;
+    }
+    
+    .color-display {
+        width: 45%;
+    }
+  }
+
+  @media screen and (max-width: 426px) {
+
+    .block-color-happiness {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+    }
+
+    .color-happiness {
+        width: 95%;
+        padding-left: 10px;
+        font-size: 58px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .color-display {
+        width: 65%;
+    }
+
+    .colorInfo {
+        margin-bottom: 10px;
+        justify-content: flex-start;
+    }
+
+    
+
+}

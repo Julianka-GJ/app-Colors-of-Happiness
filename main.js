@@ -10,12 +10,12 @@ function changeColor() {
     0 8px 2px rgba(${getRandomColor(0.5, 'colorBox4')}, 0.5),
     0 12px 0 rgba(${getRandomColor(1, 'colorBox5')}),
     0 16px 2px rgba(${getRandomColor(0.5, 'colorBox6')}, 0.5),
-    0 24px 0 rgba(${getRandomColor(1, 'colorBox7')}),
+    0 20px 0 rgba(${getRandomColor(1, 'colorBox7')}),
     0 26px 2px rgba(${getRandomColor(0.5, 'colorBox8')}, 0.5),
-    0 36px 0 rgba(${getRandomColor(1, 'colorBox9')}),
-    0 38px 2px rgba(${getRandomColor(0.5, 'colorBox10')}, 0.5),
-    0 48px 0 rgba(${getRandomColor(1, 'colorBox11')}),
-    0 50px 2px rgba(${getRandomColor(0.5, 'colorBox12')}, 0.5)`;
+    0 30px 0 rgba(${getRandomColor(1, 'colorBox9')}),
+    0 36px 2px rgba(${getRandomColor(0.5, 'colorBox10')}, 0.5),
+    0 42px 0 rgba(${getRandomColor(1, 'colorBox11')}),
+    0 54px 2px rgba(${getRandomColor(0.5, 'colorBox12')}, 0.5)`;
 };
 
 
@@ -43,6 +43,10 @@ class Element {
 
         return elem
     };
+
+    editElem(elem, content) {
+
+    }
 }
 
 // ---- We create html elements: a block in which a randomly generated color
@@ -51,7 +55,6 @@ class Element {
 function createElements(nameBox, rgbString) {
 
         let colorInfo = new Element('div', {class: `colorInfo ${nameBox}`, 'data-id': `${nameBox}`}).createEl();
-        let rgbBlock = new Element('div', {class: 'rgbBlock'}).createEl();
         let color = new Element('div', {class: `color color-${nameBox}`, 'data-id': `color-${nameBox}`}).createEl();
         let rgb = new Element('div', {class: `rgb rgb-${nameBox}`, 'data-id': `rgb-${nameBox}`}, rgbString).createEl();
 
@@ -60,9 +63,8 @@ function createElements(nameBox, rgbString) {
         color.style.backgroundColor = rgbString;
         rgb.style.color = rgbString;
         
-        rgbBlock.appendChild(color);
-        rgbBlock.appendChild(rgb);
-        colorInfo.appendChild(rgbBlock);
+        colorInfo.appendChild(color);
+        colorInfo.appendChild(rgb);
         colorDisplay.prepend(colorInfo);
 };
 
@@ -100,6 +102,7 @@ function getRandomColor(rgba, colorBox) {
         rgb.innerHTML = rgbString;
         rgb.style.color = rgbString;
     }
+    
     showСolorDisplay();
 
     return `${a}, ${b}, ${c}`;
